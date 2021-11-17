@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <form #myForm="ngForm" (submit)="getData(myForm.value)">
+        <table>
+            <tr>
+                <td>Your Email</td>
+                <td>
+                    <!-- If  ngModel  is not used data will not be included in form-->
+                    <!-- #uemail="ngModel" with required will let you know value is valid or invalid -->
+                    <input type="email" ngModel required #uem="ngModel" email name="uem" placeholder="Enter Email" id="uem">
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <span *ngIf="uem.invalid && uem.touched" style="color: red;">*Valid Email is required.</span></td>
+            </tr>
+            <tr>
+                <td>Your Email</td>
+                <td>
+                    <!-- If  ngModel  is not used data will not be included in form-->
+                    <!-- #uemail="ngModel" with required will let you know value is valid or invalid -->
+                    <input type="email" ngModel required #uemail="ngModel" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$" name="uemail" placeholder="Enter Email" id="uemail">
+                    <!-- Pattern is as 
+                      regular expression to match an e-mail id −
+
+                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$"
+                      
+                      ^ matches the starting of the sentence.
+
+                      [a-zA-Z0-9+_.-] matches one character from the English alphabet (both cases), digits, “+”, “_”, “.” and, “-” before the @ symbol.
+
+                      + indicates the repetition of the above-mentioned set of characters one or more times.
+
+                      @ matches itself.
+
+                      [a-zA-Z] matches one character from the English alphabet (both cases) after the @ symbol.
+
+                      + indicates the repetition of the above-mentioned set of characters one or more times.
+
+                      \. means exactly . should appear since . has special meaning so \. is required to represent .
+
+                      $ indicates the end of the sentence. 
+                 -->
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <span *ngIf="uemail.invalid && uemail.touched" style="color: red;">*Valid email is required.</span></td>
+            </tr>
+            <tr>
+                <td>Your Password</td>
+                <td>
+                    <!-- If  ngModel  is not used data will not be included in form-->
+                    <!-- #upass="ngModel" with required will let you know value is valid or invalid -->
+                    <input type="password" ngModel required minlength="6" #upass="ngModel" name="upass" placeholder="Enter Password" id="upassy">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <span *ngIf="upass.invalid  && upass.touched" style="color: red;">*Valid password is required.</span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <!-- use [disabled]="myForm.invalid"  to Hide the button if form is not fully valid -->
+                    <button [disabled]="myForm.invalid">Login</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <h3>{{title | json}}</h3>
+
+</body>
+
+</html>
